@@ -65,8 +65,17 @@ public class WordCount {
 EOF
 
 echo "🔹 Creating input file..."
-echo "👉 Enter text (multi-line). Press CTRL+D when done:"
-cat > input.txt
+echo "👉 Enter text (multi-line). Type 'END' on a new line to finish:"
+
+> input.txt
+
+while true; do
+    read line
+    if [ "$line" = "END" ]; then
+        break
+    fi
+    echo "$line" >> input.txt
+done
 
 echo "🔹 Compiling..."
 mkdir -p classes
